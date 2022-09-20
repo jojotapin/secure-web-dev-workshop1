@@ -15,7 +15,7 @@ console.log('🚀 It Works!');
 // 📝 TODO: Number of filming locations
 // 1. Make the function return the number of filming locations
 function getFilmingLocationsNumber () {
-	return ''
+	return filmingLocations.length
 }
 console.log(`There is ${getFilmingLocationsNumber()} filming locations in Paris`)
 
@@ -23,17 +23,23 @@ console.log(`There is ${getFilmingLocationsNumber()} filming locations in Paris`
 // 1. Implement the function
 // 2. Log the first and last item in array
 function sortFilmingLocationsByStartDate () {
-	return ''
+	const test = filmingLocations.sort(function(a,b){return new Date(a.fields.date_debut)-new Date(b.fields.date_debut);})
+	return test
 }
-console.log(``)
+
+//console.log(sortFilmingLocationsByStartDate())
+//const sorted = sortFilmingLocationsByStartDate()
+//console.log(`${sorted[0].fields.date_debut},${sorted[sorted.length-1].fields.date_debut}`)
 
 // 📝 TODO: Number of filming locations in 2020 only
 // 1. Make the function return the number of filming locations in 2020 only
 // 2. Log the result
 function getFilmingLocationsNumber2020 () {
-	return ''
+	const test = filmingLocations.filter(value => value.fields.annee_tournage == 2020)
+	return test.length
 }
-console.log()
+
+console.log(getFilmingLocationsNumber2020())
 
 // 📝 TODO: Number of filming locations per year
 // 1. Implement the function, the expected result is an object with years as
@@ -44,6 +50,7 @@ console.log()
 //    }
 // 2. Log the result
 function getFilmingLocationsNumberPerYear () {
+
 	return {}
 }
 console.log()
@@ -140,3 +147,4 @@ const duration = (ms) => `${(ms/(1000*60*60*24)).toFixed(0)} days, ${((ms/(1000*
 // 📝 TODO: Compute the average filming duration
 // 1. Implement the function
 // 2. Log the result
+
