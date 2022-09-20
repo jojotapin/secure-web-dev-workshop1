@@ -50,10 +50,21 @@ console.log(getFilmingLocationsNumber2020())
 //    }
 // 2. Log the result
 function getFilmingLocationsNumberPerYear () {
+	var dico = {} // creation dico
+	filmingLocations.forEach(function(element) {
+		if (element.fields.annee_tournage in dico)
+		{
+			dico[element.fields.annee_tournage]++
+		}
+		else
+		{
+			dico[element.fields.annee_tournage] = 1
+		}
+	})
+	return dico
 
-	return {}
 }
-console.log()
+console.log(getFilmingLocationsNumberPerYear())
 
 // 📝 TODO: Number of filming locations by district (arrondissement)
 // 1. Implement the function, the expected result is an object with
