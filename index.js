@@ -75,9 +75,20 @@ console.log(getFilmingLocationsNumberPerYear())
 //    }
 // 2. Log the result
 function getFilmingLocationsNumberPerDistrict () {
-	return {}
+	var dico = {}
+	filmingLocations.forEach(function(element) {
+		if (element.fields.ardt_lieu in dico)
+		{
+			dico[element.fields.ardt_lieu]++
+		}
+		else
+		{
+			dico[element.fields.ardt_lieu] = 1
+		}
+	})
+	return dico
 }
-console.log()
+console.log(getFilmingLocationsNumberPerDistrict())
 
 // 📝 TODO: Number of locations per film, sorted in descending order
 // 1. Implement the function, result expected as an array of object like:
