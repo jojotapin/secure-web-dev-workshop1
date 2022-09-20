@@ -95,9 +95,21 @@ console.log(getFilmingLocationsNumberPerDistrict())
 //    const result = [{film: 'LRDM - Patriot season 2', locations: 12}, {...}]
 // 2. Log the first and last item of the array
 function getFilmLocationsByFilm () {
-	return []
+	var dico = {}
+	filmingLocations.forEach(function (element)
+	{
+		if (element.fields.nom_tournage in dico)
+		{
+			dico[element.fields.nom_tournage]++
+		}
+		else
+		{
+			dico[element.fields.nom_tournage] = 1
+		}
+	})
+	return dico
 }
-console.log()
+console.log(getFilmLocationsByFilm())
 
 // 📝 TODO: Number of different films
 // 1. Implement the function
