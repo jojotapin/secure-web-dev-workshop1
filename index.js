@@ -108,13 +108,9 @@ function getFilmLocationsByFilm () {
 		}
 	})
 
-	var tab = []
-
 	const cles = Object.keys(dico).map(filmname => {return {film : filmname}})
 	const val = Object.values(dico).map(locations => {return{location : locations}})
 
-
-	//return tab
 
 	var values = Object.values(dico)
 	values.sort()
@@ -125,7 +121,7 @@ function getFilmLocationsByFilm () {
 	{
 		let v = values[i]
 
-		sortedDict.push({'film':dico[v], 'locations' : v});
+		sortedDict.push({'film':dico[v], 'locations' : v}); // revoir car dico[v] ne fonctionne pas
 	}
 
 	return sortedDict
