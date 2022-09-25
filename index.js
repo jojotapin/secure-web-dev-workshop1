@@ -107,16 +107,41 @@ function getFilmLocationsByFilm () {
 			dico[element.fields.nom_tournage] = 1
 		}
 	})
-	return dico
+
+	var tab = []
+
+	const cles = Object.keys(dico).map(filmname => {return {film : filmname}})
+	const val = Object.values(dico).map(locations => {return{location : locations}})
+
+
+	//return tab
+
+	var values = Object.values(dico)
+	values.sort()
+
+	var i,len = values.length
+	var sortedDict= []
+	for (i=0;i<len;i++)
+	{
+		let v = values[i]
+
+		sortedDict.push({'film':dico[v], 'locations' : v});
+	}
+
+	return sortedDict
+	//return dico
 }
+
 console.log(getFilmLocationsByFilm())
 
 // 📝 TODO: Number of different films
 // 1. Implement the function
 // 2. Log the result
 function getNumberOfFilms() {
-	return ''
+
+	return
 }
+console.log(getNumberOfFilms())
 
 // 📝 TODO: All the filming locations of `LRDM - Patriot season 2`
 // 1. Return an array with all filming locations of LRDM - Patriot season 2
