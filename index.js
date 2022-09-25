@@ -112,16 +112,16 @@ function getFilmLocationsByFilm () {
 	const val = Object.values(dico).map(locations => {return{location : locations}})
 
 
-	var values = Object.values(dico)
-	values.sort()
+	var keys = Object.keys(dico)
+	keys.sort()
 
-	var i,len = values.length
+	var i,len = keys.length
 	var sortedDict= []
 	for (i=0;i<len;i++)
 	{
-		let v = values[i]
+		let v = keys[i]
 
-		sortedDict.push({'film':dico[v], 'locations' : v}); // revoir car dico[v] ne fonctionne pas
+		sortedDict.push({'film':v, 'locations' : dico[v]}); // revoir car dico[v] ne fonctionne pas
 	}
 
 	return sortedDict
@@ -135,7 +135,7 @@ console.log(getFilmLocationsByFilm())
 // 2. Log the result
 function getNumberOfFilms() {
 
-	return
+	return getFilmLocationsByFilm().length
 }
 console.log(getNumberOfFilms())
 
@@ -143,8 +143,10 @@ console.log(getNumberOfFilms())
 // 1. Return an array with all filming locations of LRDM - Patriot season 2
 // 2. Log the result
 function getArseneFilmingLocations () {
-	return []
+	const test = filmingLocations.filter(value => value.fields.nom_tournage === "LRDM - Patriot season 2")
+	return test
 }
+console.log(getArseneFilmingLocations())
 
 // 📝 TODO: Tous les arrondissement des lieux de tournage de nos films favoris
 //  (favoriteFilms)
@@ -153,6 +155,7 @@ function getArseneFilmingLocations () {
 //    const films = { 'LRDM - Patriot season 2': ['75013'] }
 // 2. Log the result
 function getFavoriteFilmsLocations (favoriteFilmsNames) {
+
 	return []
 }
 const favoriteFilms =
