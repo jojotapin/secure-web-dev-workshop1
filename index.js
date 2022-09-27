@@ -198,9 +198,18 @@ console.log(getFavoriteFilmsLocations(favoriteFilms))
 //        'Une jeune fille qui va bien': [{...}]
 //     }
 function getFilmingLocationsPerFilm () {
-
-	return { }
+	var Films = [] // tableau de tous les films
+	filmingLocations.forEach(function(element)
+	{
+		if (!Films.includes(element.fields.nom_tournage))
+		{
+			Films.push(element.fields.nom_tournage)
+		}
+	})
+	const loc = getFavoriteFilmsLocations(Films)
+	return loc
 }
+console.log(getFilmingLocationsPerFilm())
 
 // 📝 TODO: Count each type of film (Long métrage, Série TV, etc...)
 // 1. Implement the function
