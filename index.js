@@ -108,8 +108,8 @@ function getFilmLocationsByFilm () {
 		}
 	})
 
-	const cles = Object.keys(dico).map(filmname => {return {film : filmname}})
-	const val = Object.values(dico).map(locations => {return{location : locations}})
+	//const cles = Object.keys(dico).map(filmname => {return {film : filmname}})
+	//const val = Object.values(dico).map(locations => {return{location : locations}})
 
 
 	var keys = Object.keys(dico)
@@ -143,27 +143,53 @@ console.log(getNumberOfFilms())
 // 1. Return an array with all filming locations of LRDM - Patriot season 2
 // 2. Log the result
 function getArseneFilmingLocations () {
-	const test = filmingLocations.filter(value => value.fields.nom_tournage === "LRDM - Patriot season 2")
-	return test
+	var resul = []
+	filmingLocations.forEach(function (element)
+	{
+		if (element.fields.nom_tournage == 'LRDM - Patriot season 2')
+		{
+			resul.push(element.fields.ardt_lieu)
+		}
+	})
+	return resul
 }
+
 console.log(getArseneFilmingLocations())
 
-// 📝 TODO: Tous les arrondissement des lieux de tournage de nos films favoris
+// 📝 TODO: Tous les arrondissements des lieux de tournage de nos films favoris
 //  (favoriteFilms)
 // 1. Return an array of all the districts of each favorite films given as a
 //    parameter. e.g. :
 //    const films = { 'LRDM - Patriot season 2': ['75013'] }
 // 2. Log the result
 function getFavoriteFilmsLocations (favoriteFilmsNames) {
+	var fav = {}
+	favoriteFilmsNames.forEach(function(element1)
+	{
+		var favtab = []
+		filmingLocations.forEach(function(element)
+		{
+			if (element.fields.nom_tournage == element1)
+			{
+				favtab.push(element.fields.ardt_lieu)
+			}
 
-	return []
+		})
+		fav[element1]=favtab
+	})
+	return fav
 }
+
 const favoriteFilms =
 	[
 		'LRDM - Patriot season 2',
 		'Alice NEVERS',
 		'Emily in Paris',
 	]
+
+
+console.log(getFavoriteFilmsLocations(favoriteFilms))
+
 
 // 📝 TODO: All filming locations for each film
 //     e.g. :
@@ -172,6 +198,7 @@ const favoriteFilms =
 //        'Une jeune fille qui va bien': [{...}]
 //     }
 function getFilmingLocationsPerFilm () {
+
 	return { }
 }
 
