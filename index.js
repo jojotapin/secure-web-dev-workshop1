@@ -215,16 +215,34 @@ console.log(getFilmingLocationsPerFilm())
 // 1. Implement the function
 // 2. Log the result
 function countFilmingTypes () {
-	return {}
+	var tab = []
+	filmingLocations.forEach(function(element)
+	{
+		if(!tab.includes(element.fields.type_tournage))
+		{
+			tab.push(element.fields.type_tournage)
+		}
+	})
+	return tab.length
 }
+console.log(countFilmingTypes())
 
 // 📝 TODO: Sort each type of filming by count, from highest to lowest
 // 1. Implement the function. It should return a sorted array of objects like:
 //    [{type: 'Long métrage', count: 1234}, {...}]
 // 2. Log the result
 function sortedCountFilmingTypes () {
-	return []
+	const setType = new Set()
+	filmingLocations.forEach(film => setType.add(film.fields.type_tournage))
+	let tab1 = []
+	setType.forEach(function (type) {
+		let dictionnary = {}
+		dictionnary[type] = filmingLocations.filter(function (o) {return o.fields.type_tournage == type}).length
+		tab1.push(dictionnary)
+	})
+	return tab1.sort((a,b) => Object.values(b) -  Object.values(a))
 }
+console.log(sortedCountFilmingTypes())
 
 /**
  * This arrow functions takes a duration in milliseconds and returns a
@@ -237,8 +255,18 @@ const duration = (ms) => `${(ms/(1000*60*60*24)).toFixed(0)} days, ${((ms/(1000*
 // 📝 TODO: Find the filming location with the longest duration
 // 1. Implement the function
 // 2. Log the filming location, and its computed duration
-
+function LongestDurationFilm() {
+	let longestMovie = filmingLocations[0]
+	for(let i = 0; i < getFilmingLocationsNumber() - 1; i++) {
+		longestMovie= Date.parse(longestMovie.fields.date_fin) - Date.parse(longestMovie.fields.date_debut) < Date.parse(filmingLocations[i+1].fields.date_fin) - Date.parse(filmingLocations[i+1].fields.date_debut) ? filmingLocations[i+1] : longestMovie
+	}
+	return longestMovie.fields.nom_tournage + ' durée: ' + duration(Date.parse(longestMovie.fields.date_fin) - Date.parse(longestMovie.fields.date_debut))
+}
 // 📝 TODO: Compute the average filming duration
 // 1. Implement the function
 // 2. Log the result
+function AverageFilmingDuration() {
+	return duration(filmingLocations.map(film => Date.parse(film.fields.date_fin) - Date.parse(film.fields.date_debut)).reduce((duree1, duree2) => duree1 + duree2)/getFilmingLocationsNumber())
+}
 
+console.log('durée moyenne des filming location : ' + AverageFilmingDuration())
